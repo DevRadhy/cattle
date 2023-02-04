@@ -8,11 +8,41 @@ datasource db {
 }
 
 model User {
-  id         String   @default(uuid()) @id
-  email      String   @unique
-  name       String?
-  password   String
-  created_at DateTime @default(now())
+  id        String   @id
+  email     String   @unique
+  name      String?
+  password  String
+  createdAt DateTime @default(now()) @map("created_at")
+
+  UserAnimal UserAnimal[]
 
   @@map("users")
+}
+
+model Animal {
+  id             String    @id
+  identification Int       @unique
+  fatherId       Int?      @map("father_id")
+  motherId       Int?      @map("mother_id")
+  weight         Decimal?
+  birthdate      DateTime?
+  description    String?
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+
+  UserAnimal UserAnimal[]
+
+  @@map("animals")
+}
+
+model UserAnimal {
+  id        String   @id
+  userId    String   @map("user_id")
+  animalId  String   @map("animal_id")
+  createdAt DateTime @map("created_at")
+
+  User   User   @relation(fields: [userId], references: [id])
+  Animal Animal @relation(fields: [animalId], references: [id])
+
+  @@map("user_animals")
 }
