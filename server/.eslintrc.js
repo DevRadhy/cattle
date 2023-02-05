@@ -20,6 +20,6 @@ module.exports = {
     "arrow-parens": ["error", "always"],
     "arrow-spacing": "error",
     "no-duplicate-imports": "error",
-    "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "argsIgnorePattern": "^_" }],
+    "no-unused-vars": ["error", { "vars": "all", "args": "none", "argsIgnorePattern": "^_" }],
   }
 };
