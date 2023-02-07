@@ -1,6 +1,6 @@
 import User from "../entities/User";
 import AppError from "../error/AppError";
-import { UserRepository } from "../repositories/UserRepository";
+import { UserRepository } from "../repositories/UsersRepository";
 import { prismaClient } from "./connection";
 import { hash } from "bcryptjs";
 
