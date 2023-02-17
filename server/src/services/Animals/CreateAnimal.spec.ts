@@ -8,9 +8,9 @@ describe("Create Animal", () => {
     const createAnimal = new CreateAnimalService(animalsRepository);
 
     const animal = await createAnimal.execute({
-      identification: 3,
-      fatherId: 1,
-      motherId: 2,
+      identification: "003",
+      fatherId: "001",
+      motherId: "002",
       birthDate: new Date(),
       weight: 40,
     });
