@@ -1,9 +1,20 @@
 -- CreateTable
+CREATE TABLE "users" (
+    "id" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "password" TEXT NOT NULL,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "users_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "animals" (
     "id" TEXT NOT NULL,
-    "identification" INTEGER NOT NULL,
-    "father_id" INTEGER,
-    "mother_id" INTEGER,
+    "identification" TEXT NOT NULL,
+    "father_id" TEXT,
+    "mother_id" TEXT,
     "weight" DECIMAL(65,30),
     "birthdate" TIMESTAMP(3),
     "description" TEXT,
@@ -22,6 +33,9 @@ CREATE TABLE "user_animals" (
 
     CONSTRAINT "user_animals_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "animals_identification_key" ON "animals"("identification");
