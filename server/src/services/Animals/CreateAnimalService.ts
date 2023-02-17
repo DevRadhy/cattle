@@ -3,9 +3,9 @@ import AppError from "../../error/AppError";
 import { AnimalsRepository } from "../../repositories/AnimalsRepository";
 
 interface CreateAnimalRequest {
-  identification: number;
-  fatherId?: number | null;
-  motherId?: number | null;
+  identification: string;
+  fatherId?: string | null;
+  motherId?: string | null;
   birthDate?: Date | null;
   weight?: number | null;
   description?: string | null;
@@ -13,9 +13,9 @@ interface CreateAnimalRequest {
 
 interface CreateAnimalResponse {
   id: string;
-  identification: number;
-  fatherId?: number | null;
-  motherId?: number | null;
+  identification: string;
+  fatherId?: string | null;
+  motherId?: string | null;
   birthDate?: Date | null;
   weight?: number | null;
   description?: string | null;
