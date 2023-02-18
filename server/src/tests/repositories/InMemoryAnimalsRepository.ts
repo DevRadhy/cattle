@@ -5,14 +5,14 @@ import { AnimalsRepository } from "../../repositories/AnimalsRepository";
 export class InMemoryAnimalsRepository implements AnimalsRepository {
   public animals: Animal[] = [];
 
-  async create(props: Animal): Promise<void> {
-    const animalAlreadyExists = this.animals.find((animal) => animal.props.identification === props.props.identification);
+  async create(animal: Animal): Promise<void> {
+    const animalAlreadyExists = this.animals.find((data) => data.identification === animal.identification);
 
     if(animalAlreadyExists) {
       throw new AppError("Animal already exists.");
     }
 
-    this.animals.push(props);
+    this.animals.push(animal);
   }
 
   async findById(id: string): Promise<Animal | null> {
@@ -26,19 +26,13 @@ export class InMemoryAnimalsRepository implements AnimalsRepository {
   }
 
   async save(animal: Animal): Promise<void> {
-    const animalExists = this.findById(animal.id);
+    const animalIndex = this.animals.findIndex((data) => data.id === animal.id);
 
-    if(!animalExists) {
+    if(animalIndex < 0) {
       throw new AppError("Animal does not exists.");
     }
 
-    this.animals = this.animals.map((data) => {
-      if(data.props.identification === animal.props.identification) {
-        return animal;
-      }
-
-      return data;
-    });
+    this.animals[animalIndex] = animal;
   }
 
   async delete(id: string): Promise<void> {
