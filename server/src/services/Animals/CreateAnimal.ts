@@ -12,13 +12,7 @@ interface CreateAnimalRequest {
 }
 
 interface CreateAnimalResponse {
-  id: string;
-  identification: string;
-  fatherId?: string | null;
-  motherId?: string | null;
-  birthDate?: Date | null;
-  weight?: number | null;
-  description?: string | null;
+  animal: Animal;
 }
 
 export class CreateAnimalService {
@@ -36,13 +30,7 @@ export class CreateAnimalService {
     await this.animalsRepository.create(animal);
 
     return {
-      id: animal.id,
-      identification: animal.props.identification,
-      fatherId: animal.props.fatherId,
-      motherId: animal.props.motherId,
-      birthDate: animal.props.birthDate,
-      weight: animal.props.weight,
-      description: animal.props.description,
+      animal,
     };
   }
 }

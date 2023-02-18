@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { InMemoryAnimalsRepository } from '../../tests/repositories/InMemoryAnimalsRepository';
-import { CreateAnimalService } from './CreateAnimalService';
+import { CreateAnimalService } from './CreateAnimal';
 import { UpdateAnimal } from './UpdateAnimal';
 
 describe("Update Animal", () => {
@@ -9,7 +9,7 @@ describe("Update Animal", () => {
     const createAnimal = new CreateAnimalService(animalsRepository);
     const updateAnimal = new UpdateAnimal(animalsRepository);
 
-    const animal = {
+    const raw = {
       identification: "003",
       fatherId: "001",
       motherId: "002",
@@ -17,25 +17,18 @@ describe("Update Animal", () => {
       weight: 40,
     };
 
-    const raw = await createAnimal.execute(animal);
+    const { animal } = await createAnimal.execute(raw);
 
     await updateAnimal.execute({
-      id: raw.id,
-      props: {
-        ...raw,
-        weight: 80,
-      }
+      id: animal.id,
+      identification: animal.identification,
+      fatherId: animal.fatherId,
+      motherId: animal.motherId,
+      birthDate: animal.birthDate,
+      weight: 80,
     });
 
     expect(animalsRepository.animals).toHaveLength(1);
-    expect(animalsRepository.animals).toEqual([
-      {
-        id: raw.id,
-        props: {
-          ...raw,
-          weight: 80,
-        }
-      }
-    ]);
+    expect(animalsRepository.animals[0].weight).toEqual(80);
   });
 });

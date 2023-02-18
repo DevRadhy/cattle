@@ -2,17 +2,29 @@ import Animal from "../../entities/Animal";
 import AppError from "../../error/AppError";
 import { AnimalsRepository } from "../../repositories/AnimalsRepository";
 
+interface UpdateAnimalRequest {
+  id: string;
+  identification: string;
+  fatherId?: string | null;
+  motherId?: string | null;
+  birthDate?: Date | null;
+  weight?: number | null;
+  description?: string | null;
+}
+
 export class UpdateAnimal {
   constructor (
     private animalsRepository: AnimalsRepository,
   ) {}
 
-  async execute(animal: Animal) {
-    const animalExists = await this.animalsRepository.findById(animal.id);
+  async execute(request: UpdateAnimalRequest) {
+    const animalExists = await this.animalsRepository.findById(request.id);
 
     if(!animalExists) {
       throw new AppError("Animal does not exists.");
     }
+
+    const animal = new Animal(request, animalExists.id);
 
     await this.animalsRepository.save(animal);
   }

@@ -1,14 +1,14 @@
 import { describe, expect, it } from "vitest";
 import AppError from "../../error/AppError";
 import { InMemoryAnimalsRepository } from "../../tests/repositories/InMemoryAnimalsRepository";
-import { CreateAnimalService } from "./CreateAnimalService";
+import { CreateAnimalService } from "./CreateAnimal";
 
 describe("Create Animal", () => {
   it("Should be able to create a new animal", async () => {
     const animalsRepository = new InMemoryAnimalsRepository();
     const createAnimal = new CreateAnimalService(animalsRepository);
 
-    const animal = await createAnimal.execute({
+    const { animal } = await createAnimal.execute({
       identification: "003",
       fatherId: "001",
       motherId: "002",
@@ -16,7 +16,7 @@ describe("Create Animal", () => {
       weight: 40,
     });
 
-    expect(animal).toBeTruthy();
+    expect(animalsRepository.animals[0]).toEqual(animal);
   });
 
   it("Should not be able to create a new animal without identification", () => {

@@ -2,7 +2,7 @@ import { randomUUID } from 'crypto';
 import { describe, it, expect } from 'vitest';
 import AppError from '../../error/AppError';
 import { InMemoryAnimalsRepository } from '../../tests/repositories/InMemoryAnimalsRepository';
-import { CreateAnimalService } from './CreateAnimalService';
+import { CreateAnimalService } from './CreateAnimal';
 import { DeleteAnimal } from './DeleteAnimal';
 
 describe("Delete Animal", () => {
@@ -11,7 +11,7 @@ describe("Delete Animal", () => {
     const createAnimal = new CreateAnimalService(animalsRepository);
     const deleteAnimal = new DeleteAnimal(animalsRepository);
 
-    const animal = await createAnimal.execute({
+    const { animal } = await createAnimal.execute({
       identification: "003",
       fatherId: "001",
       motherId: "002",
