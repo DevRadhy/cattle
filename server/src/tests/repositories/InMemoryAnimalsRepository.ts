@@ -40,4 +40,14 @@ export class InMemoryAnimalsRepository implements AnimalsRepository {
       return data;
     });
   }
+
+  async delete(id: string): Promise<void> {
+    const animalExists = this.findById(id);
+
+    if(!animalExists) {
+      throw new AppError("Animal does not exists.");
+    }
+
+    this.animals = this.animals.filter((animal) => animal.id !== id);
+  }
 }
