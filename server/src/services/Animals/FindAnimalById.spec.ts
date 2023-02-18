@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { InMemoryAnimalsRepository } from "../../tests/repositories/InMemoryAnimalsRepository";
-import { CreateAnimalService } from "./CreateAnimalService";
+import { CreateAnimalService } from "./CreateAnimal";
 import { FindAnimalById } from "./FindAnimalById";
 
 describe("Find Animal by ID", () => {
@@ -9,7 +9,7 @@ describe("Find Animal by ID", () => {
     const findAnimalById = new FindAnimalById(animalsRepository);
     const createAnimal = new CreateAnimalService(animalsRepository);
 
-    const raw = await createAnimal.execute({
+    const { animal } = await createAnimal.execute({
       identification: "003",
       fatherId: "001",
       motherId: "002",
@@ -17,9 +17,9 @@ describe("Find Animal by ID", () => {
       weight: 40,
     });
 
-    const animal = await findAnimalById.execute(raw.id);
+    await findAnimalById.execute(animal.id);
 
-    expect(animal?.props.identification).toBe("003");
+    expect(animalsRepository.animals[0].identification).toBe("003");
   });
 
   it("Should not be able to return a Animal with a invalid ID", async () => {
