@@ -14,4 +14,40 @@ export class InMemoryAnimalsRepository implements AnimalsRepository {
 
     this.animals.push(props);
   }
+
+  async findById(id: string): Promise<Animal | null> {
+    const animalExists = this.animals.find((animal) => animal.id === id);
+
+    if(!animalExists) {
+      return null;
+    }
+
+    return animalExists;
+  }
+
+  async save(animal: Animal): Promise<void> {
+    const animalExists = this.findById(animal.id);
+
+    if(!animalExists) {
+      throw new AppError("Animal does not exists.");
+    }
+
+    this.animals = this.animals.map((data) => {
+      if(data.props.identification === animal.props.identification) {
+        return animal;
+      }
+
+      return data;
+    });
+  }
+
+  async delete(id: string): Promise<void> {
+    const animalExists = this.findById(id);
+
+    if(!animalExists) {
+      throw new AppError("Animal does not exists.");
+    }
+
+    this.animals = this.animals.filter((animal) => animal.id !== id);
+  }
 }
