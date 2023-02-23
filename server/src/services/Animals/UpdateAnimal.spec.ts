@@ -1,12 +1,12 @@
 import { describe, it, expect } from 'vitest';
 import { InMemoryAnimalsRepository } from '../../tests/repositories/InMemoryAnimalsRepository';
-import { CreateAnimalService } from './CreateAnimal';
+import { CreateAnimal } from './CreateAnimal';
 import { UpdateAnimal } from './UpdateAnimal';
 
 describe("Update Animal", () => {
   it("Should be able to update a animal", async () => {
     const animalsRepository = new InMemoryAnimalsRepository();
-    const createAnimal = new CreateAnimalService(animalsRepository);
+    const createAnimal = new CreateAnimal(animalsRepository);
     const updateAnimal = new UpdateAnimal(animalsRepository);
 
     const raw = {

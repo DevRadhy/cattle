@@ -15,7 +15,7 @@ interface CreateAnimalResponse {
   animal: Animal;
 }
 
-export class CreateAnimalService {
+export class CreateAnimal {
   constructor (
     private animalsRepository: AnimalsRepository,
   ) {}
@@ -30,7 +30,7 @@ export class CreateAnimalService {
     await this.animalsRepository.create(animal);
 
     return {
-      animal,
+      animal
     };
   }
 }
