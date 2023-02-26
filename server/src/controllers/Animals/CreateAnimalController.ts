@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { AnimalsViewModel } from "../../Views/AnimalsViewModel";
+import { AnimalsViewModel } from "../../views/AnimalsViewModel";
 import { CreateAnimal } from "../../services/Animals/CreateAnimal";
 
 export class CreateAnimalController {
