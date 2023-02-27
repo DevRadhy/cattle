@@ -1,12 +1,12 @@
 import { describe, expect, it } from "vitest";
 import AppError from "../../error/AppError";
 import { InMemoryAnimalsRepository } from "../../tests/repositories/InMemoryAnimalsRepository";
-import { CreateAnimalService } from "./CreateAnimal";
+import { CreateAnimal } from "./CreateAnimal";
 
 describe("Create Animal", () => {
   it("Should be able to create a new animal", async () => {
     const animalsRepository = new InMemoryAnimalsRepository();
-    const createAnimal = new CreateAnimalService(animalsRepository);
+    const createAnimal = new CreateAnimal(animalsRepository);
 
     const { animal } = await createAnimal.execute({
       identification: "003",
@@ -21,7 +21,7 @@ describe("Create Animal", () => {
 
   it("Should not be able to create a new animal without identification", () => {
     const animalsRepository = new InMemoryAnimalsRepository();
-    const createAnimal = new CreateAnimalService(animalsRepository);
+    const createAnimal = new CreateAnimal(animalsRepository);
 
     expect(() => {
       return createAnimal.execute({
@@ -36,7 +36,7 @@ describe("Create Animal", () => {
 
   it("Should not be able to create a animail with a identification that already exists", async () => {
     const animalsRepository = new InMemoryAnimalsRepository();
-    const createAnimal = new CreateAnimalService(animalsRepository);
+    const createAnimal = new CreateAnimal(animalsRepository);
 
     await createAnimal.execute({
       identification: "003",

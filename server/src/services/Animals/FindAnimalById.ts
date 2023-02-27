@@ -7,7 +7,7 @@ export class FindAnimalById {
   ) {}
 
   async execute(id: string) {
-    const animal = this.animalsRepository.findById(id);
+    const animal = await this.animalsRepository.findById(id);
 
     if(!animal) {
       throw new AppError("Animal does not exists.");

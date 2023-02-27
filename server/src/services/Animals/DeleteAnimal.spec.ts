@@ -2,13 +2,13 @@ import { randomUUID } from 'crypto';
 import { describe, it, expect } from 'vitest';
 import AppError from '../../error/AppError';
 import { InMemoryAnimalsRepository } from '../../tests/repositories/InMemoryAnimalsRepository';
-import { CreateAnimalService } from './CreateAnimal';
+import { CreateAnimal } from './CreateAnimal';
 import { DeleteAnimal } from './DeleteAnimal';
 
 describe("Delete Animal", () => {
   it("Should be able to delete a animal", async () => {
     const animalsRepository = new InMemoryAnimalsRepository();
-    const createAnimal = new CreateAnimalService(animalsRepository);
+    const createAnimal = new CreateAnimal(animalsRepository);
     const deleteAnimal = new DeleteAnimal(animalsRepository);
 
     const { animal } = await createAnimal.execute({
