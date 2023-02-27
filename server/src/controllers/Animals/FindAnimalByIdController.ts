@@ -12,12 +12,6 @@ export class FindAnimalByIdController {
 
     const animal = await this.findAnimalById.execute(id);
 
-    if(!animal) {
-      return response.status(404).json({
-        message: "Animal not found",
-      });
-    }
-
     return response.status(200).json(AnimalsViewModel.toHTTP(animal));
   }
 }
