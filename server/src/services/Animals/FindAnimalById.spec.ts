@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+import AppError from "../../error/AppError";
 import { InMemoryAnimalsRepository } from "../../tests/repositories/InMemoryAnimalsRepository";
 import { CreateAnimal } from "./CreateAnimal";
 import { FindAnimalById } from "./FindAnimalById";
@@ -35,8 +36,8 @@ describe("Find Animal by ID", () => {
       weight: 40,
     });
 
-    const animal = await findAnimalById.execute("000");
-
-    expect(animal).not.toBeTruthy();
+    expect(() => {
+      return findAnimalById.execute("000");
+    }).rejects.toThrow(AppError);
   });
 });
