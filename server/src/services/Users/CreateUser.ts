@@ -11,7 +11,7 @@ interface CreateUserResponse {
   user: User;
 }
 
-export class CreateUsers {
+export class CreateUser {
   constructor(
     private usersRepository: UsersRepository,
   ) {}
