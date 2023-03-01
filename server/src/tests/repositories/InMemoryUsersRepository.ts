@@ -42,7 +42,7 @@ export class InMemoryUsersRepository implements UsersRepository {
   async delete(id: string): Promise<void> {
     const user = this.users.findIndex((user) => user.id === id);
 
-    if(!user) {
+    if(user < 0) {
       throw new AppError("User does not exists.");
     }
 
