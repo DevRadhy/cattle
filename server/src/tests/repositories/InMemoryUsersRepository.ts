@@ -32,7 +32,7 @@ export class InMemoryUsersRepository implements UsersRepository {
   async save(user: User): Promise<void> {
     const raw = this.users.findIndex((raw) => raw.id === user.id);
 
-    if(!raw) {
+    if(raw < 0) {
       throw new AppError("User does not exists.");
     }
 
