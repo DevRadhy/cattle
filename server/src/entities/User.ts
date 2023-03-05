@@ -6,11 +6,23 @@ export interface UserProps {
 }
 
 export default class User {
-  id: string;
-  props: UserProps;
+  private _id: string;
+  private props: UserProps;
 
   constructor(props: UserProps, id?: string) {
     this.props = props;
-    this.id = id ?? randomUUID();
+    this._id = id ?? randomUUID();
+  }
+
+  public get id() {
+    return this._id;
+  }
+
+  public get name() {
+    return this.props.name;
+  }
+
+  public get email() {
+    return this.props.email;
   }
 }
