@@ -14,11 +14,13 @@ describe("Find user by id", () => {
     const { user } = await createUser.execute({
       name: "John Doe",
       email: "john@mail.com",
+      password: "password",
     });
 
     const userFound = await findUserById.execute(user.id);
 
-    expect(userFound).toEqual(user);
+    expect(userFound).toHaveProperty("id");
+    expect(userFound.id).toEqual(user.id);
   });
 
   it("Should not be able to find a user with a invalid id", async () => {

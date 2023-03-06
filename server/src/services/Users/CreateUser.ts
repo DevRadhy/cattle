@@ -5,6 +5,7 @@ import { UsersRepository } from "../../repositories/UsersRepository";
 interface CreateUserRequest {
   name: string;
   email: string;
+  password: string;
 }
 
 interface CreateUserResponse {
@@ -23,7 +24,7 @@ export class CreateUser {
       throw new AppError("User already exists.");
     }
 
-    const user = new User({ name: request.name, email: request.email });
+    const user = new User({ name: request.name, email: request.email, password: request.password });
 
     await this.usersRepository.create(user);
 

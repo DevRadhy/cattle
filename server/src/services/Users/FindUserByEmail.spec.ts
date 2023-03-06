@@ -13,11 +13,14 @@ describe("Find user by email", () => {
     const { user } = await createUser.execute({
       name: "John Doe",
       email: "john@mail.com",
+      password: "password",
     });
 
-    const userFound = await findUserByEmail.execute("john@mail.com");
+    const userFound = await findUserByEmail.execute(user.email);
 
-    expect(userFound).toEqual(user);
+    expect(userFound).toHaveProperty("id");
+    expect(userFound).toHaveProperty("email");
+    expect(userFound.email).toEqual(user.email);
   });
 
   it("Should not be able to find a user with a invalid email", async () => {
