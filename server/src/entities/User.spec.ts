@@ -6,6 +6,7 @@ describe("User", () => {
     const user = new User({
       name: "John Doe",
       email: "john@mail.com",
+      password: "password",
     });
 
     expect(user).toBeTruthy();

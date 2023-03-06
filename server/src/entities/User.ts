@@ -3,6 +3,7 @@ import { randomUUID } from "crypto";
 export interface UserProps {
   name: string;
   email: string;
+  password: string;
 }
 
 export default class User {
@@ -24,5 +25,9 @@ export default class User {
 
   public get email() {
     return this.props.email;
+  }
+
+  public get password() {
+    return this.props.password;
   }
 }

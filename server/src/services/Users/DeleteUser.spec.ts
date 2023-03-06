@@ -14,6 +14,7 @@ describe("Delete user", () => {
     const { user } = await createUser.execute({
       name: "John Doe",
       email: "john@mail.com",
+      password: "password",
     });
 
     await deleteUser.execute(user.id);

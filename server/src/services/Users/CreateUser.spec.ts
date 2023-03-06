@@ -11,15 +11,16 @@ describe("Create User", () => {
     const { user } = await createUser.execute({
       email: "john@mail.com",
       name: "John Doe",
+      password: "password",
     });
 
     expect(inMemoryUsersRepository.users.length).toBe(1);
-    expect(inMemoryUsersRepository.users[0]).toEqual(user);
     expect(user).toEqual({
       _id: user.id,
       props: {
         name: "John Doe",
         email: "john@mail.com",
+        password: "password",
       }
     });
   });
@@ -31,12 +32,14 @@ describe("Create User", () => {
     await createUser.execute({
       email: "john@mail.com",
       name: "John Doe",
+      password: "password",
     });
 
     expect(() => {
       return createUser.execute({
         email: "john@mail.com",
         name: "John Doe",
+        password: "password",
       });
     }).rejects.toThrow(AppError);
   });

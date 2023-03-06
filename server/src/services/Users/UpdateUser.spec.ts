@@ -15,11 +15,13 @@ describe("Update User", () => {
     const { user } = await createUser.execute({
       email: "john@mail.com",
       name: "John Doe",
+      password: "password",
     });
 
     const updatedUser = new User({
       name: "John Doe",
       email: "john.doe@mail.com",
+      password: "password"
     }, user.id);
 
     await updateUser.execute(updatedUser);
@@ -35,6 +37,7 @@ describe("Update User", () => {
     const updatedUser = new User({
       name: "John Doe",
       email: "john.doe@mail.com",
+      password: "password"
     }, randomUUID());
 
     expect(() => {
