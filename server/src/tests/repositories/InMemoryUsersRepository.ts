@@ -1,3 +1,4 @@
+import { hash } from "bcryptjs";
 import User from "../../entities/User";
 import AppError from "../../error/AppError";
 import { UsersRepository } from "../../repositories/UsersRepository";
@@ -6,7 +7,14 @@ export class InMemoryUsersRepository implements UsersRepository {
   public users: User[] = [];
 
   async create(user: User): Promise<void> {
-    this.users.push(user);
+    const userPrisma = new User({
+      name: user.name,
+      email: user.email,
+      password: await hash(user.password, 8),
+    },
+    user.id);
+
+    this.users.push(userPrisma);
   }
 
   async findByEmail(email: string): Promise<User | null> {
