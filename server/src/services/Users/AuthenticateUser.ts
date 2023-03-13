@@ -8,7 +8,7 @@ interface AuthenticateUserRequest {
   password: string;
 }
 
-export class AthenticateUser {
+export class AuthenticateUser {
   constructor (
     private usersRepository: UsersRepository,
   ) {}
