@@ -26,7 +26,7 @@ export class PrismaUsersRepository implements UsersRepository {
       password: await hash(user.password, 8)
     };
 
-    this.prisma.user.create({
+    await this.prisma.user.create({
       data: userPrisma,
     });
   }
