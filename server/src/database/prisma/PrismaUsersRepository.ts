@@ -21,13 +21,11 @@ export class PrismaUsersRepository implements UsersRepository {
       throw new AppError("User already exists!");
     }
 
-    const userPrisma = {
-      ...PrismaUsersMappers.toPrisma(user),
-      password: await hash(user.password, 8)
-    };
-
     await this.prisma.user.create({
-      data: userPrisma,
+      data: {
+        ...PrismaUsersMappers.toPrisma(user),
+        password: await hash(user.password, 8)
+      },
     });
   }
 
@@ -76,6 +74,7 @@ export class PrismaUsersRepository implements UsersRepository {
       },
       data: {
         ...PrismaUsersMappers.toPrisma(user),
+        password: await hash(user.password, 8)
       }
     });
 
