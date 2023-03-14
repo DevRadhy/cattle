@@ -18,16 +18,21 @@ describe("Update User", () => {
       password: "password",
     });
 
-    const updatedUser = new User({
+    const updatedUser = {
+      id: user.id,
       name: "John Doe",
       email: "john.doe@mail.com",
-      password: "password"
-    }, user.id);
+      password: "password",
+    };
 
     await updateUser.execute(updatedUser);
 
     expect(inMemoryUsersRepository.users.length).toBe(1);
-    expect(inMemoryUsersRepository.users[0]).toEqual(updatedUser);
+    expect(inMemoryUsersRepository.users[0]).toEqual(new User({
+      name: updatedUser.name,
+      email: updatedUser.email,
+      password: updatedUser.password,
+    }, updatedUser.id));
   });
 
   it("Should not be able to update a invalid user", async () => {
