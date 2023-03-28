@@ -1,6 +1,12 @@
 import { NextFunction, Request, Response } from "express";
-import { verify } from "jsonwebtoken";
+import { decode, verify } from "jsonwebtoken";
 import AppError from "../error/AppError";
+
+interface JWT_Payload {
+  user_id: string;
+  iat: number;
+  exp: number;
+}
 
 export class Authorizate {
   async verify(request: Request, response: Response, next: NextFunction) {
@@ -14,6 +20,10 @@ export class Authorizate {
 
     try {
       verify(token, String(process.env.JWT_SECRET));
+
+      const { user_id } = decode(token) as JWT_Payload;
+
+      request.user_id = user_id;
 
       return next();
     } catch(error) {
