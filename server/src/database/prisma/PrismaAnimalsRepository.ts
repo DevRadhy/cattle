@@ -30,6 +30,16 @@ export class PrismaAnimalsRepository implements AnimalsRepository {
     return PrismaAnimalsMappers.toDomain(animal);
   }
 
+  async findMany(ownerId: string): Promise<Animal[]> {
+    const animals = await this.prisma.animal.findMany({
+      where: {
+        ownerId,
+      }
+    });
+
+    return animals.map(PrismaAnimalsMappers.toDomain);
+  }
+
   async save(animal: Animal): Promise<void> {
     const raw = PrismaAnimalsMappers.toPrisma(animal);
 

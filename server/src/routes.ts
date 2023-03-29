@@ -3,6 +3,7 @@ import {
   createAnimalController,
   deleteAnimalController,
   findAnimalByIdController,
+  findManyAnimalsController,
   updateAnimalController
 } from "./controllers/Animals";
 import {
@@ -19,6 +20,10 @@ const routes = Router();
 
 routes.post("/animals", authorizate.verify, (request, response) => {
   return createAnimalController.handle(request, response);
+});
+
+routes.get("/animals/:ownerId", authorizate.verify, (request, response) => {
+  return findManyAnimalsController.handle(request, response);
 });
 
 routes.get("/animals/:id", authorizate.verify, (request, response) => {

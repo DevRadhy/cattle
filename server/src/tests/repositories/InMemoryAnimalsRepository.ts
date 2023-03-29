@@ -25,6 +25,12 @@ export class InMemoryAnimalsRepository implements AnimalsRepository {
     return animalExists;
   }
 
+  async findMany(ownerId: string): Promise<Animal[]> {
+    const animals = this.animals.filter((animal) => animal.ownerId === ownerId);
+
+    return animals;
+  }
+
   async save(animal: Animal): Promise<void> {
     const animalIndex = this.animals.findIndex((data) => data.id === animal.id);
 
