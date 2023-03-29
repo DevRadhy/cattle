@@ -18,6 +18,7 @@ export class UpdateAnimalController {
       birthDate,
       weight,
       description,
+      ownerId: request.user_id,
     });
 
     return response.status(200).json({
