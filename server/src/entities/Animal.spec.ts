@@ -1,3 +1,4 @@
+import { randomUUID } from 'crypto';
 import { describe, expect, it } from 'vitest';
 import Animal from './Animal';
 
@@ -9,6 +10,8 @@ describe("Animal", () => {
       motherId: "002",
       birthDate: new Date(),
       weight: 40,
+      description: "A very nice animal",
+      ownerId: randomUUID(),
     });
 
     expect(animal).toBeTruthy();
