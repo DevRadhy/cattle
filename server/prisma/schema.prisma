@@ -14,8 +14,6 @@ model User {
   password  String
   createdAt DateTime @default(now()) @map("created_at")
 
-  UserAnimal UserAnimal[]
-
   @@map("users")
 }
 
@@ -30,19 +28,5 @@ model Animal {
   createdAt      DateTime  @default(now()) @map("created_at")
   updatedAt      DateTime  @updatedAt @map("updated_at")
 
-  UserAnimal UserAnimal[]
-
   @@map("animals")
-}
-
-model UserAnimal {
-  id        String   @id
-  userId    String   @map("user_id")
-  animalId  String   @map("animal_id")
-  createdAt DateTime @map("created_at")
-
-  User   User   @relation(fields: [userId], references: [id])
-  Animal Animal @relation(fields: [animalId], references: [id])
-
-  @@map("user_animals")
 }
