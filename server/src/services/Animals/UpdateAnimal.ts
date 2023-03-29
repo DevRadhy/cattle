@@ -10,6 +10,7 @@ interface UpdateAnimalRequest {
   birthDate?: Date | null;
   weight?: number | null;
   description?: string | null;
+  ownerId: string;
 }
 
 export class UpdateAnimal {

@@ -9,6 +9,7 @@ interface CreateAnimalRequest {
   birthDate?: Date | null;
   weight?: number | null;
   description?: string | null;
+  ownerId: string;
 }
 
 interface CreateAnimalResponse {

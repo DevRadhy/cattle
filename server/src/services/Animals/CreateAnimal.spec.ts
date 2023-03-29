@@ -1,3 +1,4 @@
+import { randomUUID } from "crypto";
 import { describe, expect, it } from "vitest";
 import AppError from "../../error/AppError";
 import { InMemoryAnimalsRepository } from "../../tests/repositories/InMemoryAnimalsRepository";
@@ -14,6 +15,7 @@ describe("Create Animal", () => {
       motherId: "002",
       birthDate: new Date(),
       weight: 40,
+      ownerId: randomUUID(),
     });
 
     expect(animalsRepository.animals[0]).toEqual(animal);
@@ -30,6 +32,7 @@ describe("Create Animal", () => {
         motherId: "002",
         birthDate: new Date(),
         weight: 40,
+        ownerId: randomUUID(),
       });
     }).rejects.toThrow(AppError);
   });
@@ -44,6 +47,7 @@ describe("Create Animal", () => {
       motherId: "002",
       birthDate: new Date(),
       weight: 40,
+      ownerId: randomUUID(),
     });
 
     expect(() => {
@@ -53,6 +57,7 @@ describe("Create Animal", () => {
         motherId: "002",
         birthDate: new Date(),
         weight: 40,
+        ownerId: randomUUID(),
       });
     }).rejects.toThrow(AppError);
   });

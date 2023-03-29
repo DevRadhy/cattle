@@ -17,6 +17,7 @@ describe("Delete Animal", () => {
       motherId: "002",
       birthDate: new Date(),
       weight: 40,
+      ownerId: randomUUID(),
     });
 
     await deleteAnimal.execute(animal.id);
