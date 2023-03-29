@@ -10,6 +10,7 @@ export class PrismaAnimalsMappers {
       birthDate: animal.birthDate,
       weight: animal.weight,
       description: animal.description,
+      ownerId: animal.ownerId,
     };
   }
 
@@ -21,6 +22,7 @@ export class PrismaAnimalsMappers {
       weight: raw.weight,
       birthDate: raw.birthDate,
       description: raw.description,
+      ownerId: raw.ownerId,
     },
     raw.id
     );
