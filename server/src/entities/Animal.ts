@@ -7,6 +7,7 @@ interface AnimalProps {
   birthDate?: Date | null;
   weight?: number | null;
   description?: string | null;
+  ownerId: string;
 }
 
 export default class Animal {
@@ -48,5 +49,13 @@ export default class Animal {
 
   public get description() {
     return this.props.description;
+  }
+
+  public get ownerId() {
+    return this.props.ownerId;
+  }
+
+  public set ownerId(id: string) {
+    this.props.ownerId = id;
   }
 }

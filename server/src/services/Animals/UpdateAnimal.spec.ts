@@ -1,3 +1,4 @@
+import { randomUUID } from 'crypto';
 import { describe, it, expect } from 'vitest';
 import { InMemoryAnimalsRepository } from '../../tests/repositories/InMemoryAnimalsRepository';
 import { CreateAnimal } from './CreateAnimal';
@@ -15,6 +16,7 @@ describe("Update Animal", () => {
       motherId: "002",
       birthDate: new Date(),
       weight: 40,
+      ownerId: randomUUID(),
     };
 
     const { animal } = await createAnimal.execute(raw);
@@ -26,6 +28,7 @@ describe("Update Animal", () => {
       motherId: animal.motherId,
       birthDate: animal.birthDate,
       weight: 80,
+      ownerId: animal.ownerId,
     });
 
     expect(animalsRepository.animals).toHaveLength(1);

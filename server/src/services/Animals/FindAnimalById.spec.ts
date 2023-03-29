@@ -1,3 +1,4 @@
+import { randomUUID } from "crypto";
 import { describe, it, expect } from "vitest";
 import AppError from "../../error/AppError";
 import { InMemoryAnimalsRepository } from "../../tests/repositories/InMemoryAnimalsRepository";
@@ -16,6 +17,7 @@ describe("Find Animal by ID", () => {
       motherId: "002",
       birthDate: new Date(),
       weight: 40,
+      ownerId: randomUUID(),
     });
 
     await findAnimalById.execute(animal.id);
@@ -34,6 +36,7 @@ describe("Find Animal by ID", () => {
       motherId: "002",
       birthDate: new Date(),
       weight: 40,
+      ownerId: randomUUID(),
     });
 
     expect(() => {

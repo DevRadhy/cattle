@@ -17,6 +17,7 @@ export class CreateAnimalController {
       birthDate,
       weight,
       description,
+      ownerId: request.user_id,
     });
 
     return response.status(201).json(AnimalsViewModel.toHTTP(animal));
