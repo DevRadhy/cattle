@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import AppError from "../../error/AppError";
 import { DeleteUser } from "../../services/Users/DeleteUser";
 
 export class DeleteUserController {
@@ -8,6 +9,10 @@ export class DeleteUserController {
 
   async handle(request: Request, response: Response) {
     const { id } = request.params;
+    
+    if(id !== request.user_id) {
+      throw new AppError("Invalid token!", 403);
+    }
 
     await this.deleteUser.execute(id);
 
