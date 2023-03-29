@@ -21,7 +21,7 @@ model User {
 
 model Animal {
   id             String    @id
-  identification String    @unique
+  identification String
   fatherId       String?   @map("father_id")
   motherId       String?   @map("mother_id")
   weight         Decimal?
