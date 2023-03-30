@@ -9,7 +9,7 @@ export class DeleteAnimalController {
   async handle(request: Request, response: Response) {
     const { id } = request.params;
 
-    await this.deleteAnimal.execute(id);
+    await this.deleteAnimal.execute(id, request.user_id);
 
     return response.status(200).json({
       message: "Animal deleted successfully",
