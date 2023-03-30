@@ -20,7 +20,7 @@ describe("Find Animal by ID", () => {
       ownerId: randomUUID(),
     });
 
-    await findAnimalById.execute(animal.id);
+    await findAnimalById.execute(animal.id, animal.ownerId);
 
     expect(animalsRepository.animals[0].identification).toBe("003");
   });
@@ -40,7 +40,7 @@ describe("Find Animal by ID", () => {
     });
 
     expect(() => {
-      return findAnimalById.execute("000");
+      return findAnimalById.execute("000", randomUUID());
     }).rejects.toThrow(AppError);
   });
 });

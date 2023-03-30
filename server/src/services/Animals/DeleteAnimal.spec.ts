@@ -20,7 +20,7 @@ describe("Delete Animal", () => {
       ownerId: randomUUID(),
     });
 
-    await deleteAnimal.execute(animal.id);
+    await deleteAnimal.execute(animal.id, animal.ownerId);
 
     expect(animalsRepository.animals).toHaveLength(0);
   });
@@ -30,7 +30,7 @@ describe("Delete Animal", () => {
     const deleteAnimal = new DeleteAnimal(animalsRepository);
 
     expect(() => {
-      return deleteAnimal.execute(randomUUID());
+      return deleteAnimal.execute(randomUUID(), randomUUID());
     }).rejects.toThrow(AppError);
   });
 });
