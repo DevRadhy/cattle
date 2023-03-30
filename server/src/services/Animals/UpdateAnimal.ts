@@ -19,7 +19,7 @@ export class UpdateAnimal {
   ) {}
 
   async execute(request: UpdateAnimalRequest) {
-    const animalExists = await this.animalsRepository.findById(request.id);
+    const animalExists = await this.animalsRepository.findById(request.id, request.ownerId);
 
     if(!animalExists) {
       throw new AppError("Animal does not exists.");

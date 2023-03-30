@@ -14,7 +14,7 @@ routes.post("/", authorizate.verify, (request, response) => {
   return createAnimalController.handle(request, response);
 });
 
-routes.get("/:ownerId", authorizate.verify, (request, response) => {
+routes.get("/owner/:ownerId", authorizate.verify, (request, response) => {
   return findManyAnimalsController.handle(request, response);
 });
 

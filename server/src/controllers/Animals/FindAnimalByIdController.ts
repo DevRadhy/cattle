@@ -10,7 +10,7 @@ export class FindAnimalByIdController {
   async handle(request: Request, response: Response) {
     const { id } = request.params;
 
-    const animal = await this.findAnimalById.execute(id);
+    const animal = await this.findAnimalById.execute(id, request.user_id);
 
     return response.status(200).json(AnimalsViewModel.toHTTP(animal));
   }
