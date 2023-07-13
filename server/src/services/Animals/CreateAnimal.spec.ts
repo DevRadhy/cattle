@@ -11,9 +11,10 @@ describe("Create Animal", () => {
 
     const { animal } = await createAnimal.execute({
       identification: "003",
+      birthDate: new Date(),
       fatherId: "001",
       motherId: "002",
-      birthDate: new Date(),
+      gender: 0,
       weight: 40,
       ownerId: randomUUID(),
     });
@@ -28,9 +29,10 @@ describe("Create Animal", () => {
     expect(() => {
       return createAnimal.execute({
         identification: "",
+        birthDate: new Date(),
         fatherId: "001",
         motherId: "002",
-        birthDate: new Date(),
+        gender: 0,
         weight: 40,
         ownerId: randomUUID(),
       });
@@ -43,9 +45,10 @@ describe("Create Animal", () => {
 
     await createAnimal.execute({
       identification: "003",
+      birthDate: new Date(),
       fatherId: "001",
       motherId: "002",
-      birthDate: new Date(),
+      gender: 0,
       weight: 40,
       ownerId: randomUUID(),
     });
@@ -53,9 +56,10 @@ describe("Create Animal", () => {
     expect(() => {
       return createAnimal.execute({
         identification: "003",
+        birthDate: new Date(),
         fatherId: "001",
         motherId: "002",
-        birthDate: new Date(),
+        gender: 0,
         weight: 40,
         ownerId: randomUUID(),
       });

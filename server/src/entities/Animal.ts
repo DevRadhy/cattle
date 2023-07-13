@@ -2,9 +2,10 @@ import { randomUUID } from "crypto";
 
 interface AnimalProps {
   identification: string;
+  birthDate?: Date | null;
   fatherId?: string | null;
   motherId?: string | null;
-  birthDate?: Date | null;
+  gender: number;
   weight?: number | null;
   description?: string | null;
   ownerId: string;
@@ -31,6 +32,10 @@ export default class Animal {
     return this.props.identification;
   }
 
+  public get birthDate() {
+    return this.props.birthDate;
+  }
+
   public get fatherId() {
     return this.props.fatherId;
   }
@@ -39,8 +44,8 @@ export default class Animal {
     return this.props.motherId;
   }
 
-  public get birthDate() {
-    return this.props.birthDate;
+  public get gender() {
+    return this.props.gender;
   }
 
   public get weight() {

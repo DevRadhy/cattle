@@ -10,7 +10,7 @@ import {
 
 const routes = Router();
 
-routes.post("/", authorizate.verify, (request, response) => {
+routes.post("/birth", authorizate.verify, (request, response) => {
   return createAnimalController.handle(request, response);
 });
 

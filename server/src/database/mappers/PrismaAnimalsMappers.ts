@@ -5,9 +5,10 @@ export class PrismaAnimalsMappers {
     return {
       id: animal.id,
       identification: animal.identification,
+      birthdate: animal.birthDate,
       fatherId: animal.fatherId,
       motherId: animal.motherId,
-      birthDate: animal.birthDate,
+      gender: animal.gender,
       weight: animal.weight,
       description: animal.description,
       ownerId: animal.ownerId,
@@ -17,10 +18,11 @@ export class PrismaAnimalsMappers {
   static toDomain(raw: any) {
     return new Animal({
       identification: raw.identification,
+      birthDate: raw.birthDate,
       fatherId: raw.fatherId,
       motherId: raw.motherId,
+      gender: raw.gender,
       weight: raw.weight,
-      birthDate: raw.birthDate,
       description: raw.description,
       ownerId: raw.ownerId,
     },
