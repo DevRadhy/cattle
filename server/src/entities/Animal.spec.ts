@@ -6,9 +6,10 @@ describe("Animal", () => {
   it("Should be able to create a new animal", () => {
     const animal = new Animal({
       identification: "003",
+      birthDate: new Date(),
       fatherId: "001",
       motherId: "002",
-      birthDate: new Date(),
+      gender: 0,
       weight: 40,
       description: "A very nice animal",
       ownerId: randomUUID(),

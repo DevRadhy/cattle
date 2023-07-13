@@ -4,9 +4,10 @@ import { AnimalsRepository } from "../../repositories/AnimalsRepository";
 
 interface CreateAnimalRequest {
   identification: string;
+  birthDate?: Date | null;
   fatherId?: string | null;
   motherId?: string | null;
-  birthDate?: Date | null;
+  gender: number;
   weight?: number | null;
   description?: string | null;
   ownerId: string;

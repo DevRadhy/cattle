@@ -22,16 +22,27 @@ model User {
 model Animal {
   id             String    @id
   identification String
+  birthdate      DateTime?
   fatherId       String?   @map("father_id")
   motherId       String?   @map("mother_id")
+  gender         Decimal
   weight         Decimal?
-  birthdate      DateTime?
   description    String?
   ownerId        String    @map("owner_id")
   createdAt      DateTime  @default(now()) @map("created_at")
   updatedAt      DateTime  @updatedAt @map("updated_at")
 
-  owner User @relation(fields: [ownerId], references: [id])
+  owner    User   @relation(fields: [ownerId], references: [id])
+  genderId Gender @relation(fields: [gender], references: [id])
 
   @@map("animals")
+}
+
+model Gender {
+  id   Decimal @id
+  type Decimal
+
+  animals Animal[]
+
+  @@map("genders")
 }

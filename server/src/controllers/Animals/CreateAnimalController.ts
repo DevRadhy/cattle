@@ -8,13 +8,14 @@ export class CreateAnimalController {
   ) {}
 
   async handle(request: Request, response: Response) {
-    const { identification, fatherId, motherId, birthDate, weight, description } = request.body;
+    const { identification, birthDate, fatherId, motherId, gender, weight, description } = request.body;
 
     const { animal } = await this.createAnimal.execute({
       identification,
+      birthDate,
       fatherId,
       motherId,
-      birthDate,
+      gender,
       weight,
       description,
       ownerId: request.user_id,
