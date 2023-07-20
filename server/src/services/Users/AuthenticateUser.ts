@@ -26,7 +26,9 @@ export class AuthenticateUser {
       throw new AppError("Email or password incorrect!");
     }
 
-    const token = jwt.sign({ user_id: userExists.id }, String(process.env.JWT_SECRET));
+    const token = jwt.sign({ user_id: userExists.id }, String(process.env.JWT_SECRET), {
+      expiresIn: "7d",
+    });
 
     return {
       token,
