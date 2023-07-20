@@ -28,6 +28,9 @@ export class AuthenticateUser {
 
     const token = jwt.sign({ user_id: userExists.id }, String(process.env.JWT_SECRET));
 
-    return token;
+    return {
+      token,
+      user: userExists,
+    };
   }
 }
