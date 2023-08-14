@@ -19,7 +19,7 @@ export class RefreshToken {
     });
 
     const token = jwt.sign({ user_id: userExists.id }, String(process.env.JWT_SECRET), {
-      expiresIn: "20s",
+      expiresIn: "15m",
     });
 
     return {
