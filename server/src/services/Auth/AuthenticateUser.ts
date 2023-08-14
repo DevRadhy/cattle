@@ -1,7 +1,7 @@
 import { compare } from "bcryptjs";
 import AppError from "../../error/AppError";
 import { UsersRepository } from "../../repositories/UsersRepository";
-import * as jwt from "jsonwebtoken";
+import { refreshToken } from "../Auth";
 
 interface AuthenticateUserRequest {
   email: string;
@@ -26,11 +26,10 @@ export class AuthenticateUser {
       throw new AppError("Email or password incorrect!");
     }
 
-    const token = jwt.sign({ user_id: userExists.id }, String(process.env.JWT_SECRET), {
-      expiresIn: "7d",
-    });
+    const { refreshToken: refresh_token, token } = await refreshToken.execute(userExists.id);
 
     return {
+      refresh_token,
       token,
       user: userExists,
     };

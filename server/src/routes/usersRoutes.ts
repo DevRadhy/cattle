@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { authorizate } from "../middlewares";
 import {
-  authenticateUserController,
   createUserController,
   deleteUserController,
   findUserByEmailController,
@@ -10,10 +9,6 @@ import {
 } from "../controllers/Users";
 
 const routes = Router();
-
-routes.post("/login", async (request, response) => {
-  return authenticateUserController.handle(request, response);
-});
 
 routes.post("/register", (request, response) => {
   return createUserController.handle(request, response);
