@@ -4,7 +4,7 @@ import { authorizate } from '../middlewares';
 
 const routes = Router();
 
-routes.post('/refresh-token', authorizate.verify, (request, response) => {
+routes.post('/refresh', authorizate.verify, (request, response) => {
   return refreshTokenContrller.handle(request, response);
 });
 
