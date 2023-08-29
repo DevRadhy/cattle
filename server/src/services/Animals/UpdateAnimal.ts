@@ -7,6 +7,7 @@ interface UpdateAnimalRequest {
   identification: string;
   fatherId?: string | null;
   motherId?: string | null;
+  gender: number;
   birthDate?: Date | null;
   weight?: number | null;
   description?: string | null;

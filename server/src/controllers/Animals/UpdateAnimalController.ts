@@ -8,13 +8,14 @@ export class UpdateAnimalController {
 
   async handle(request: Request, response: Response) {
     const { id } = request.params;
-    const { identification, fatherId, motherId, birthDate, weight, description } = request.body;
+    const { identification, fatherId, motherId, gender, birthDate, weight, description } = request.body;
 
     await this.updateAnimal.execute({
       id,
       identification,
       fatherId,
       motherId,
+      gender,
       birthDate,
       weight,
       description,
