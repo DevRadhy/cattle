@@ -10,3 +10,12 @@ services:
     ports:
       - "5432:5432"
     restart: always
+  
+  app:
+    build: .
+    container_name: app
+    ports:
+      - "3333:3333"
+    restart: always
+    depends_on:
+      - postgres
