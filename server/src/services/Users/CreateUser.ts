@@ -17,14 +17,14 @@ export class CreateUser {
     private usersRepository: UsersRepository,
   ) {}
 
-  async execute(request: CreateUserRequest): Promise<CreateUserResponse> {
-    const userAlreadyExists = await this.usersRepository.findByEmail(request.email);
+  async execute({ name, email, password }: CreateUserRequest): Promise<CreateUserResponse> {
+    const userAlreadyExists = await this.usersRepository.findByEmail(email);
 
     if(userAlreadyExists) {
       throw new AppError("User already exists.");
     }
 
-    const user = new User({ name: request.name, email: request.email, password: request.password });
+    const user = new User({ name, email, password });
 
     await this.usersRepository.create(user);
 

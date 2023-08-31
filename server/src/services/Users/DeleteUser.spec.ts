@@ -4,6 +4,7 @@ import AppError from "../../error/AppError";
 import { InMemoryUsersRepository } from "../../tests/repositories/InMemoryUsersRepository";
 import { CreateUser } from "./CreateUser";
 import { DeleteUser } from "./DeleteUser";
+import UserFactory from "../../tests/factories/UserFactory";
 
 describe("Delete user", () => {
   it("Should be able to delete a user", async () => {
@@ -11,11 +12,9 @@ describe("Delete user", () => {
     const createUser = new CreateUser(inMemmoryUsersRepository);
     const deleteUser = new DeleteUser(inMemmoryUsersRepository);
 
-    const { user } = await createUser.execute({
-      name: "John Doe",
-      email: "john@mail.com",
-      password: "password",
-    });
+    const userProps = UserFactory();
+
+    const { user } = await createUser.execute(userProps);
 
     await deleteUser.execute(user.id);
 

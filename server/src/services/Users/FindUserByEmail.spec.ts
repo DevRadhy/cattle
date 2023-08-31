@@ -3,6 +3,7 @@ import AppError from "../../error/AppError";
 import { InMemoryUsersRepository } from "../../tests/repositories/InMemoryUsersRepository";
 import { CreateUser } from "./CreateUser";
 import { FindUserByEmail } from "./FindUserByEmail";
+import UserFactory from "../../tests/factories/UserFactory";
 
 describe("Find user by email", () => {
   it("Should be able to find a user by email", async () => {
@@ -10,11 +11,9 @@ describe("Find user by email", () => {
     const createUser = new CreateUser(inMemmoryUsersRepository);
     const findUserByEmail = new FindUserByEmail(inMemmoryUsersRepository);
 
-    const { user } = await createUser.execute({
-      name: "John Doe",
-      email: "john@mail.com",
-      password: "password",
-    });
+    const userProps = UserFactory();
+
+    const { user } = await createUser.execute(userProps);
 
     const userFound = await findUserByEmail.execute(user.email);
 

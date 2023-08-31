@@ -17,11 +17,11 @@ export class UpdateUser {
   async execute({ id, ...props }: UpdateUserRequest) {
     const userExists =  await this.usersRepository.findById(id);
 
-    const user = new User(props, id);
-    
     if(!userExists) {
       throw new AppError("User does not exists.");
     }
+
+    const user = new User(props, id);
 
     await this.usersRepository.save(user);
   }
