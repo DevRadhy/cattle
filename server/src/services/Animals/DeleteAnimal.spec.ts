@@ -4,6 +4,7 @@ import AppError from '../../error/AppError';
 import { InMemoryAnimalsRepository } from '../../tests/repositories/InMemoryAnimalsRepository';
 import { CreateAnimal } from './CreateAnimal';
 import { DeleteAnimal } from './DeleteAnimal';
+import AnimalFactory from '../../tests/factories/AnimalFactory';
 
 describe("Delete Animal", () => {
   it("Should be able to delete a animal", async () => {
@@ -11,14 +12,9 @@ describe("Delete Animal", () => {
     const createAnimal = new CreateAnimal(animalsRepository);
     const deleteAnimal = new DeleteAnimal(animalsRepository);
 
-    const { animal } = await createAnimal.execute({
-      identification: "003",
-      fatherId: "001",
-      motherId: "002",
-      birthDate: new Date(),
-      weight: 40,
-      ownerId: randomUUID(),
-    });
+    const animalProps = AnimalFactory();
+
+    const { animal } = await createAnimal.execute(animalProps);
 
     await deleteAnimal.execute(animal.id, animal.ownerId);
 

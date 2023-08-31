@@ -4,6 +4,7 @@ import AppError from "../../error/AppError";
 import { InMemoryAnimalsRepository } from "../../tests/repositories/InMemoryAnimalsRepository";
 import { CreateAnimal } from "./CreateAnimal";
 import { FindAnimalById } from "./FindAnimalById";
+import AnimalFactory from "../../tests/factories/AnimalFactory";
 
 describe("Find Animal by ID", () => {
   it("Should be able to return a Animal by ID", async () => {
@@ -11,18 +12,13 @@ describe("Find Animal by ID", () => {
     const findAnimalById = new FindAnimalById(animalsRepository);
     const createAnimal = new CreateAnimal(animalsRepository);
 
-    const { animal } = await createAnimal.execute({
-      identification: "003",
-      fatherId: "001",
-      motherId: "002",
-      birthDate: new Date(),
-      weight: 40,
-      ownerId: randomUUID(),
-    });
+    const animalProps = AnimalFactory();
+
+    const { animal } = await createAnimal.execute(animalProps);
 
     await findAnimalById.execute(animal.id, animal.ownerId);
 
-    expect(animalsRepository.animals[0].identification).toBe("003");
+    expect(animalsRepository.animals[0].identification).toBe(animalProps.identification);
   });
 
   it("Should not be able to return a Animal with a invalid ID", async () => {
@@ -30,17 +26,12 @@ describe("Find Animal by ID", () => {
     const findAnimalById = new FindAnimalById(animalsRepository);
     const createAnimal = new CreateAnimal(animalsRepository);
 
-    await createAnimal.execute({
-      identification: "003",
-      fatherId: "001",
-      motherId: "002",
-      birthDate: new Date(),
-      weight: 40,
-      ownerId: randomUUID(),
-    });
+    const animalProps = AnimalFactory();
+
+    await createAnimal.execute(animalProps);
 
     expect(() => {
-      return findAnimalById.execute("000", randomUUID());
+      return findAnimalById.execute(randomUUID(), randomUUID());
     }).rejects.toThrow(AppError);
   });
 });
