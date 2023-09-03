@@ -14,8 +14,18 @@ services:
   app:
     build: .
     container_name: app
+    env_file:
+      - .env
     ports:
       - "3333:3333"
     restart: always
     depends_on:
       - postgres
+
+networks:
+  default:
+    driver: bridge
+
+volumes:
+  postgres:
+    driver: local
