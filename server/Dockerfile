@@ -24,5 +24,8 @@ COPY package*.json ./
 RUN yarn install --no-lockfile --prod && yarn cache clean --all
 
 COPY --from=build /usr/app/dist ./dist
+COPY --from=build /usr/app/prisma ./prisma
+
+RUN npx prisma generate
 
 ENTRYPOINT [ "yarn", "start" ]
