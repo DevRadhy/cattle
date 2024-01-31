@@ -3,7 +3,7 @@
 ## Rotas e Funcionalidades
 
 - [ ] Cadastro de animais
-- [ ] Registro de nascimentos
+- [x] Registro de nascimentos
 - [ ] Controle de produção
 - [ ] Controle sanitário
 - [ ] Controle reprodutivo
@@ -25,3 +25,10 @@
 - father
 - mother
 - description?
+- owner
+
+**User**
+- id
+- name
+- email
+- password
