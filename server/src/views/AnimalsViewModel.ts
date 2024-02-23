@@ -8,6 +8,7 @@ export class AnimalsViewModel {
       fatherId: animal.fatherId,
       motherId: animal.motherId,
       birthDate: animal.birthDate,
+      gender: animal.gender,
       weight: animal.weight,
       description: animal.description,
     };
