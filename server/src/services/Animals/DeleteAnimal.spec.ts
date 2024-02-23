@@ -16,7 +16,7 @@ describe("Delete Animal", () => {
 
     const { animal } = await createAnimal.execute(animalProps);
 
-    await deleteAnimal.execute(animal.id, animal.ownerId);
+    await deleteAnimal.execute(animal.id);
 
     expect(animalsRepository.animals).toHaveLength(0);
   });
@@ -26,7 +26,7 @@ describe("Delete Animal", () => {
     const deleteAnimal = new DeleteAnimal(animalsRepository);
 
     expect(() => {
-      return deleteAnimal.execute(randomUUID(), randomUUID());
+      return deleteAnimal.execute(randomUUID());
     }).rejects.toThrow(AppError);
   });
 });

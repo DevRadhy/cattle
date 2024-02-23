@@ -6,13 +6,13 @@ export class DeleteAnimal {
     private animalsRepository: AnimalsRepository,
   ) {}
 
-  async execute(id: string, owner_id: string) {
-    const AnimalExists = await this.animalsRepository.findById(id, owner_id);
+  async execute(id: string) {
+    const AnimalExists = await this.animalsRepository.findById(id);
 
     if(!AnimalExists) {
       throw new AppError("Animal does not exists.");
     }
 
-    await this.animalsRepository.delete(id, owner_id);
+    await this.animalsRepository.delete(id);
   }
 }

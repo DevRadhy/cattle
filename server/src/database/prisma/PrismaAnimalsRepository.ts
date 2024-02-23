@@ -16,11 +16,10 @@ export class PrismaAnimalsRepository implements AnimalsRepository {
     });
   }
 
-  async findById(id: string, ownerId: string): Promise<Animal | null> {
+  async findById(id: string): Promise<Animal | null> {
     const animal = await this.prisma.animal.findFirst({
       where: {
         id,
-        ownerId,
       }
     });
 

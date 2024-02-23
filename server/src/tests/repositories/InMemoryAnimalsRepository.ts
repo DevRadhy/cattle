@@ -15,8 +15,8 @@ export class InMemoryAnimalsRepository implements AnimalsRepository {
     this.animals.push(animal);
   }
 
-  async findById(id: string, ownerId: string): Promise<Animal | null> {
-    const animalExists = this.animals.find((animal) => animal.id === id && animal.ownerId === ownerId);
+  async findById(id: string): Promise<Animal | null> {
+    const animalExists = this.animals.find((animal) => animal.id === id);
 
     if(!animalExists) {
       return null;
@@ -41,8 +41,8 @@ export class InMemoryAnimalsRepository implements AnimalsRepository {
     this.animals[animalIndex] = animal;
   }
 
-  async delete(id: string, ownerId: string): Promise<void> {
-    const animalExists = this.findById(id, ownerId);
+  async delete(id: string): Promise<void> {
+    const animalExists = this.findById(id);
 
     if(!animalExists) {
       throw new AppError("Animal does not exists.");

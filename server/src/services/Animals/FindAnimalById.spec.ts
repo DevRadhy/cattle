@@ -16,7 +16,7 @@ describe("Find Animal by ID", () => {
 
     const { animal } = await createAnimal.execute(animalProps);
 
-    await findAnimalById.execute(animal.id, animal.ownerId);
+    await findAnimalById.execute(animal.id);
 
     expect(animalsRepository.animals[0].identification).toBe(animalProps.identification);
   });
@@ -31,7 +31,7 @@ describe("Find Animal by ID", () => {
     await createAnimal.execute(animalProps);
 
     expect(() => {
-      return findAnimalById.execute(randomUUID(), randomUUID());
+      return findAnimalById.execute(randomUUID());
     }).rejects.toThrow(AppError);
   });
 });
