@@ -25,7 +25,7 @@ model Animal {
   birthdate      DateTime?
   fatherId       String?   @map("father_id")
   motherId       String?   @map("mother_id")
-  gender         Decimal
+  gender         Int
   weight         Decimal?
   description    String?
   ownerId        String    @map("owner_id")
@@ -39,8 +39,8 @@ model Animal {
 }
 
 model Gender {
-  id   Decimal @id
-  type Decimal
+  id   Int    @id @default(autoincrement())
+  type String @unique
 
   animals Animal[]
 
