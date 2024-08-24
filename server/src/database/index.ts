@@ -1,15 +1,15 @@
 import { PrismaClient } from "@prisma/client";
 import { PrismaAnimalsRepository } from "./prisma/PrismaAnimalsRepository";
 import { PrismaUsersRepository } from "./prisma/PrismaUsersRepository";
-import { PrismaProductionControlRepository } from "./prisma/PrismaProductionControlRepository";
+import { PrismaProductionRepository } from "./prisma/PrismaProductionRepository";
 
 const prisma = new PrismaClient();
 const prismaAnimalsRepository = new PrismaAnimalsRepository(prisma);
 const prismaUsersRepository = new PrismaUsersRepository(prisma);
-const prismaProductionControl = new PrismaProductionControlRepository(prisma);
+const prismaProduction = new PrismaProductionRepository(prisma);
 
 export { 
   prismaAnimalsRepository, 
   prismaUsersRepository, 
-  prismaProductionControl 
+  prismaProduction
 };

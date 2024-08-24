@@ -1,7 +1,7 @@
-import { ProductionControlProps } from "../../dtos/AnimalsDTO";
+import { ProductionProps } from "../../dtos/AnimalsDTO";
 
-export class PrismaProductionControl {
-  static toPrisma(data: ProductionControlProps) {
+export class PrismaProduction {
+  static toPrisma(data: ProductionProps) {
     return {
       id: data.id,
       animalId: data.animalId,

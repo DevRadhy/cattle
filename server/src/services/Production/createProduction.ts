@@ -1,20 +1,20 @@
 import ProductionControl from "../../entities/Production";
 import AppError from "../../error/AppError";
-import { ProductionControlRepository } from "../../repositories/ProductionRepository";
+import { ProductionRepository } from "../../repositories/ProductionRepository";
 
-interface productionControllRequest {
+interface productionRequest {
   animalId: string;
   date: Date;
   goal: string;
   price: number;
 }
 
-export class CreateProductionControll {
+export class CreateProduction {
   constructor (
-    private productionControlRepository: ProductionControlRepository,
+    private productionControlRepository: ProductionRepository,
   ) {}
 
-  async execute(props: productionControllRequest) {
+  async execute(props: productionRequest) {
     const animalExists = await this.productionControlRepository.findByAnimalId(props.animalId);
 
     if(animalExists) {

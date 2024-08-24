@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import { z } from "zod";
-import { CreateProductionControll } from "../../services/ProductionControl/createProductionControll";
+import { CreateProduction } from "../../services/Production/createProduction";
 import { ProductionViewModel } from "../../views/ProductionViewModel";
 
-export class CreateProductionControlController {
+export class CreateProductionController {
   constructor (
-    private createProduction: CreateProductionControll,
+    private createProduction: CreateProduction,
   ) {}
 
   async handle(request: Request, response: Response) {
