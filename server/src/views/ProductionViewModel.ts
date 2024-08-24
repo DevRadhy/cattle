@@ -1,4 +1,4 @@
-import ProductionControl from "../entities/ProductionControl";
+import ProductionControl from "../entities/Production";
 
 export class ProductionViewModel {
   public static toHTTP(production: ProductionControl) {

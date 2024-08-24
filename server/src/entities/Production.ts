@@ -1,17 +1,17 @@
 import { randomUUID } from "crypto";
 
-interface ProductionControlProps {
+interface ProductionProps {
   animalId: string;
   date: Date;
   goal: string;
   price: number;
 }
 
-export default class ProductionControl {
+export default class Production {
   private _id: string;
-  private props: ProductionControlProps; 
+  private props: ProductionProps; 
 
-  constructor(props: ProductionControlProps, id?: string) {
+  constructor(props: ProductionProps, id?: string) {
     this.props = props;
     this._id = id ?? randomUUID();
   }
