@@ -1,4 +1,4 @@
-export interface ProductionControlProps {
+export interface ProductionProps {
   id: string;
   animalId: string;
   date: Date;

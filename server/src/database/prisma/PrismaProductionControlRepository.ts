@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { ProductionControlRepository } from "../../repositories/ProductionControlRepository";
+import { ProductionControlRepository } from "../../repositories/ProductionRepository";
 import { ProductionControlProps } from "../../dtos/AnimalsDTO";
 import { PrismaProductionControl } from "../mappers/PrismaProductionControlMappers";
 

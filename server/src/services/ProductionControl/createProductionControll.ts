@@ -1,6 +1,6 @@
 import ProductionControl from "../../entities/Production";
 import AppError from "../../error/AppError";
-import { ProductionControlRepository } from "../../repositories/ProductionControlRepository";
+import { ProductionControlRepository } from "../../repositories/ProductionRepository";
 
 interface productionControllRequest {
   animalId: string;
