@@ -20,8 +20,8 @@ export default class ProductionControl {
     return this._id;
   }
 
-  public set animalId(value: string) {
-    this.props.animalId = value;
+  public get animalId() {
+    return this.props.animalId;
   }
 
   public get date() {
