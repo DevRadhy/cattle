@@ -4,15 +4,21 @@ import ProductionControl from './ProductionControl';
 
 describe("Production", () => {
   it("Should be able to create a new production", () => {
-    const animal = new ProductionControl({
+    const raw = {
       animalId: randomUUID(),
       date: new Date(),
       goal: "Engorda",
       price: 1250.00,
-    });
+    };
+    
+    const animal = new ProductionControl(raw);
 
     expect(animal).toBeTruthy();
     expect(animal).toHaveProperty("id");
+    expect(animal).toContain({
+      id: animal.id,
+      ...raw,
+    });
   });
 
   it("Should be able to create a instance to an existing production", () => {
