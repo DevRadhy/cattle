@@ -1,7 +1,7 @@
-import ProductionControl from "../entities/Production";
+import Production from "../entities/Production";
 
 export class ProductionViewModel {
-  public static toHTTP(production: ProductionControl) {
+  public static toHTTP(production: Production) {
     return {
       id: production.id,
       identification: production.animalId,
