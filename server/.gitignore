@@ -12,3 +12,6 @@ dist/
 
 # logs
 **/*.log
+
+# misc
+.vscode/
