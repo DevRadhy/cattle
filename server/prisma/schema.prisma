@@ -35,7 +35,7 @@ model Animal {
   owner    User   @relation(fields: [ownerId], references: [id])
   genderId Gender @relation(fields: [gender], references: [id])
 
-  AnimalProduction AnimalProduction[]
+  production Production[]
 
   @@map("animals")
 }
@@ -49,7 +49,7 @@ model Gender {
   @@map("genders")
 }
 
-model AnimalProduction {
+model Production {
   id       String   @id @default(uuid())
   animalId String   @map("animal_id")
   date     DateTime
